@@ -14,6 +14,16 @@
             <h1 style="margin:0px 0px;">Crypto Analysis</h1>
             <p style="color:#818181">Get crypto data on the go</p> 
         </div>
+        <div class="search">
+            <input class="searchBar" list="currency" placeholder="Search Cryptocurrency" 
+            onkeydown = "if (event.keyCode == 13)
+ 					window.location='/' + this.value">
+            <datalist id="currency">
+                <%  for(let i=0;i<data.length;i++){ %>
+                    <option onclick="location.href='/<%= data[i].id %>';" value="<%= data[i].id %>"><%= data[i].symbol %></option>
+                <% } %>
+            </datalist> 
+        </div>
         <div class="main">
             <div class="card-header bold">
                 <div class="card1">

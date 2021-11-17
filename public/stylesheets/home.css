@@ -19,7 +19,7 @@ a{
     margin:auto;
 }
 .main{
-    padding-top:64px;
+    padding-top: 16px;
     font-size: 14px;
 }
 i{
@@ -110,7 +110,21 @@ i{
     color:#818181;
 }
 
+.search{
+    padding-top:32px;
+    display: flex;
+    justify-content: end;
+}
 
+.searchBar{
+    width:320px;
+    padding:12px 0px;
+    background: none;
+    color:#ffffff;
+    border-radius: 8px;
+    border:1.6px solid #818181;
+    text-indent: 12px;
+}
 
 #myChart{
     width:100%;
@@ -176,5 +190,9 @@ i{
     }
     .dma p{
         padding-right:32px;
+    }
+    .searchBar{
+        width:100%;
+
     }
 }

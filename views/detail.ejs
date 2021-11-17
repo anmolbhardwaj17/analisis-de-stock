@@ -87,6 +87,13 @@ var x1 = "<%= xAxis %>";
 var xf = x1.split(",");
 var y1 = "<%= yAxis %>";
 var yf = y1.split(",");
+var col = '<%= coinInfo["changePercent24Hr"] %>';
+let graphColor;
+if(parseFloat(col) > 0){
+    graphColor = '#44FF40';
+} else{
+    graphColor = '#ff2323';
+}
 const myChart = new Chart(ctx, {
     type: 'line',
     options: {
@@ -102,7 +109,7 @@ const myChart = new Chart(ctx, {
             label: 'Value (in $)',
             data: yf,
             fill: false,
-            borderColor: '#44FF40',
+            borderColor: graphColor,
             tension: 0.1
         }],
         
