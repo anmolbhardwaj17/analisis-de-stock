@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const axios = require('axios').default;
 require('dotenv').config();
+var lodash = require('lodash');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -11,6 +12,12 @@ app.use(bodyParser.json())
 .use(bodyParser.urlencoded({
         extended: true
 }));
+
+app.get('/checks', (req, res) => {
+  var y = [1,2,3,4,5,6,7,8,9,10];
+  var aans = y.slice(Math.max(y.length - 5, 0));
+  console.log(aans);
+})
 
 app.get('/', (req, res) => {
     axios.get('https://api.coincap.io/v2/assets')
@@ -51,6 +58,9 @@ app.get('/:id', (req, res) => {
         console.log(coinInfo);
         const xAxis = [];
         const yAxis = [];
+        let dma50 = 0;
+        let dma100 = 0;
+        let dma200 = 0;
         for(let i=0;i<graphInfo.length;i++){
             let str = graphInfo[i]["date"]
             let ans1 = str.substring(5,7);
@@ -59,9 +69,29 @@ app.get('/:id', (req, res) => {
             xAxis.push(x)
             let y = parseFloat(graphInfo[i]["priceUsd"]).toFixed(2)
             yAxis.push(y);
-            
+             
         }
-        res.render("detail", {coinInfo, graphInfo, xAxis, yAxis})
+            const dma50Arr = yAxis.slice(Math.max(yAxis.length - 50, 0));
+            console.log("-----------------------------------",dma50Arr)
+            var sum50 = dma50Arr.reduce(function(a,b){
+              return parseFloat(a)+parseFloat(b);
+            }, 0);
+            dma50 = (sum50/50).toFixed(2); 
+
+            const dma100Arr = yAxis.slice(Math.max(yAxis.length - 100, 0))
+            var sum100 = dma100Arr.reduce(function(a,b){
+              return parseFloat(a)+parseFloat(b);
+            }, 0);
+            dma100 = (sum100/100).toFixed(2); 
+
+            const dma200Arr = yAxis.slice(Math.max(yAxis.length - 200, 0))
+            var sum200 = dma200Arr.reduce(function(a,b){
+              return parseFloat(a)+parseFloat(b);
+            }, 0);
+            dma200 = (sum200/200).toFixed(2);
+
+
+            res.render("detail", {coinInfo, graphInfo, xAxis, yAxis, dma50, dma100, dma200});
 
         // use/access the results 
       })).catch(errors => {
@@ -74,6 +104,8 @@ app.get('/:id', (req, res) => {
 
     
 })
+
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on http://localhost:${process.env.PORT}`);

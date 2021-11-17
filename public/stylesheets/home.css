@@ -118,6 +118,24 @@ i{
     padding:0px;
 }
 
+.dma{
+    padding-top:80px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+}
+
+.dma p{
+    padding:0px;
+    margin:0px;
+}
+
+.what-is-dma{
+    color:#575757;
+    font-size: 14px;
+    padding-top:48px;
+}
+
 @media(max-width:1440px){
     .outer{
         width:80%;
@@ -143,12 +161,20 @@ i{
         min-width: 0px;
         margin:2px 0px;
         width:100%;
-        font-size: 12px;
+        font-size: 14px;
     }
     .coincap{
         justify-content: space-between;
     }
     .right{
         text-align:right;
+    }
+    .dma{
+        max-width: none;
+        font-size: 14px;
+        
+    }
+    .dma p{
+        padding-right:32px;
     }
 }
