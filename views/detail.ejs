@@ -12,7 +12,11 @@
 <body>
     <div class="outer">
         <div class="header">
-                <h1><%= coinInfo["name"] %></h1>
+
+                <span style="font-size:32px;font-weight: 700; padding-right:16px;"><%= coinInfo["name"] %></span>
+                <br>
+
+                
 
             
             <span class="about-price bold"><%= coinInfo["symbol"] %></span><% if(coinInfo["changePercent24Hr"] > 0) {%>
@@ -20,6 +24,12 @@
                 <% } else{ %>
                 <span class="about-price"><i class="bi bi-arrow-down-short red-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
                 <% } %>
+                <div class="coincap">
+                    <div class="">
+                        <p class="sub">Current Price</p>
+                        <p >$<%= parseFloat(coinInfo["priceUsd"]).toFixed(2) %></p>     
+                    </div>
+                </div>
                <div class="coincap">
                 <div class="">
                     <p class="sub">Supply</p>
@@ -42,6 +52,7 @@
                     <p class="right">$<%= parseFloat(coinInfo["volumeUsd24Hr"]).toFixed(2) %></p>
                 </div>
             </div>
+
 
         </div>
 

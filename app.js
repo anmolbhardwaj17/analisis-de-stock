@@ -48,7 +48,7 @@ app.get('/:id', (req, res) => {
 
         const graphInfo = responseOne.data["data"];
         const coinInfo = responseTwo.data["data"];
-        console.log(graphInfo);
+        console.log(coinInfo);
         const xAxis = [];
         const yAxis = [];
         for(let i=0;i<graphInfo.length;i++){
