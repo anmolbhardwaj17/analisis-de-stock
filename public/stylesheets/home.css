@@ -14,7 +14,7 @@ a{
 }
 
 .outer{
-    width:80%;
+    width:50%;
     margin:auto;
 }
 .main{
@@ -114,6 +114,12 @@ i{
     width:100%;
     margin:0px;
     padding:0px;
+}
+
+@media(max-width:1440px){
+    .outer{
+        width:80%;
+    }
 }
 
 @media(max-width:455px){
