@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
     const data = response.data["data"];
     const timeStamp = response.data["timestamp"];
     const relativeTime = timeDifference(Date.now(), timeStamp)
-    console.log(data[0]);
     res.render("home", {data, relativeTime})
   })
   .catch(function (error) {
@@ -62,8 +61,6 @@ app.get('/:id', (req, res) => {
             yAxis.push(y);
             
         }
-        console.log(xAxis);
-        console.log(yAxis);
         res.render("detail", {coinInfo, graphInfo, xAxis, yAxis})
 
         // use/access the results 
