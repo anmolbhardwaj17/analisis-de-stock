@@ -111,12 +111,16 @@ i{
 
 @media(max-width:455px){
     .outer{
-        width:90%;
+        width:98%;
     }
     .symbol{
         min-width:40px;
     }
     .card p{
+        padding:4px;
+        min-width:60px;
+    }
+    .card-header p{
         padding:4px;
         min-width:60px;
     }
