@@ -1,0 +1,32 @@
+{
+  "name": "analisis-de-stock",
+  "version": "1.0.0",
+  "description": "Stock analysis and use of websockets for realtime updates",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anmolbhardwaj17/analisis-de-stock.git"
+  },
+  "keywords": [
+    "stocks",
+    "socket.io",
+    "sockets"
+  ],
+  "author": "Anmol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anmolbhardwaj17/analisis-de-stock/issues"
+  },
+  "homepage": "https://github.com/anmolbhardwaj17/analisis-de-stock#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "socket.io": "^4.3.2"
+  }
+}
