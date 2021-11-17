@@ -15,7 +15,7 @@
             <p style="color:#818181">Get crypto data on the go</p> 
         </div>
         <div class="main">
-            <div class="card-header">
+            <div class="card-header bold">
                 <div class="card1">
                     <p>Symbol</p>
                     <p> Name</p>
@@ -34,9 +34,9 @@
                     <div class="card2">
                         <p>$<%= parseInt(data[i].priceUsd).toFixed(2) %></p>
                         <% if(data[i].changePercent24Hr > 0) {%>
-                            <p><i class="bi bi-arrow-up-short green-stock"></i><%= parseFloat(data[i].changePercent24Hr).toFixed(2) %>%</p>
+                            <p class="green-stock"><i class="bi bi-arrow-up-short green-stock"></i><%= parseFloat(data[i].changePercent24Hr).toFixed(2) %>%</p>
                             <% } else{ %>
-                            <p><i class="bi bi-arrow-down-short red-stock"></i><%= parseFloat(data[i].changePercent24Hr).toFixed(2) %>%</p>
+                            <p class="red-stock"><i class="bi bi-arrow-down-short red-stock"></i><%= parseFloat(data[i].changePercent24Hr).toFixed(2) %>%</p>
                             <% } %>
                     </div>
                 </div>
