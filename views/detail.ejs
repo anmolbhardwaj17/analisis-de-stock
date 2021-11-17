@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <title><%= coinInfo["name"] %></title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="outer">
+        <div class="header">
+                <h1><%= coinInfo["name"] %></h1>
+
+            
+            <span class="about-price bold"><%= coinInfo["symbol"] %></span><% if(coinInfo["changePercent24Hr"] > 0) {%>
+                <span class="about-price"><i class="bi bi-arrow-up-short green-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
+                <% } else{ %>
+                <span class="about-price"><i class="bi bi-arrow-down-short red-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
+                <% } %>
+                <div class="coincap small-header">
+                    <p>Supply</p>
+                    <p>Max Supply</p>
+                </div>
+            <div class="coincap">
+                <p>$<%= parseFloat(coinInfo["supply"]).toFixed(2) %></p>
+                <p>$<%= parseFloat(coinInfo["maxSupply"]).toFixed(2) %></p>
+            </div>
+            <div class="coincap small-header">
+                <p>Market Cap</p>
+                <p>Vol. used in 24hr</p>
+            </div>
+            <div class="coincap">
+                <p>$<%= parseFloat(coinInfo["marketCapUsd"]).toFixed(2) %></p>
+                <p>$<%= parseFloat(coinInfo["volumeUsd24Hr"]).toFixed(2) %></p>
+            </div>
+        </div>
+
+        <div class="graph">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</body>
+
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+var x1 = "<%= xAxis %>";
+var xf = x1.split(",");
+var y1 = "<%= yAxis %>";
+var yf = y1.split(",");
+const myChart = new Chart(ctx, {
+    type: 'line',
+    options: {
+                elements: {
+                    point:{
+                        radius: 0
+                    }
+                }
+            },
+    data: {
+        labels: xf,
+        datasets: [{
+            label: 'Value (in $)',
+            data: yf,
+            fill: false,
+            borderColor: '#44FF40',
+            tension: 0.1
+        }],
+        
+    }
+});
+</script>
+</html>
