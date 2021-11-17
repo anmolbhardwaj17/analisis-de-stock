@@ -147,7 +147,7 @@ i{
 .what-is-dma{
     color:#575757;
     font-size: 14px;
-    padding-top:48px;
+    padding:48px 0px;
 }
 
 @media(max-width:1440px){
