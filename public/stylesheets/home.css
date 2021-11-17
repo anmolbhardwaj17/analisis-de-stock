@@ -20,6 +20,7 @@ a{
 }
 .main{
     padding-top:64px;
+    font-size: 14px;
 }
 i{
     padding:4px;
@@ -67,6 +68,7 @@ i{
 .card1{
     display: flex;
     justify-content: start;
+
     
 }
 
