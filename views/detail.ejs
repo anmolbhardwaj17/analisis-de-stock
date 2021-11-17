@@ -20,9 +20,9 @@
 
             
             <span class="about-price bold"><%= coinInfo["symbol"] %></span><% if(coinInfo["changePercent24Hr"] > 0) {%>
-                <span class="about-price"><i class="bi bi-arrow-up-short green-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
+                <span class="about-price"><i class="bi bi-caret-up-fill green-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
                 <% } else{ %>
-                <span class="about-price"><i class="bi bi-arrow-down-short red-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
+                <span class="about-price"><i class="bi bi-caret-down-fill red-stock"></i><%= parseFloat(coinInfo["changePercent24Hr"]).toFixed(2) %>%</span>
                 <% } %>
                 <div class="coincap">
                     <div class="">
