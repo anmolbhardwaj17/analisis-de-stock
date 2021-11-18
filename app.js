@@ -25,11 +25,15 @@ app.get('/', (req, res) => {
     // handle success
     console.log(response);
     const data = response.data["data"];
-    res.render("home", {data})
+    const lossMax = [...data];
+    const proMax = [...data];
+    const loss = lossMax.sort(function(a,b){return a.changePercent24Hr - b.changePercent24Hr});
+    const profit = proMax.sort(function(a,b){return a.changePercent24Hr - b.changePercent24Hr}).reverse();
+    //res.send(data)
+    res.render("home", {data, loss, profit})
   })
   .catch(function (error) {
     // handle error
-    console.log(error);
   })
 
 

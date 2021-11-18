@@ -20,7 +20,7 @@
             <h1 style="margin:0px 0px;">Crypto Stats</h1>
             <p style="color:#818181">Get crypto data on the go</p> 
         </div>
-        <div class="search">
+        <!-- <div class="search">
             <input class="searchBar" list="currency" placeholder="Search Cryptocurrency" 
             onkeydown = "if (event.keyCode == 13)
  					window.location='/' + this.value">
@@ -29,7 +29,11 @@
                     <option onclick="location.href='/<%= data[i].id %>';" value="<%= data[i].id %>"><%= data[i].symbol %></option>
                 <% } %>
             </datalist> 
-        </div>
+        </div> -->
+        <!-- <div class="sorts">
+            <div class="sort">Most profit in 24 hr</div>
+            <div id="mostLoss" class="sort">Most loss in 24 hr</div>
+        </div> -->
         <div class="main">
             <div class="card-header bold">
                 <div class="card1">
@@ -61,6 +65,8 @@
         </div>
     </div>
 </body>
+
+
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";

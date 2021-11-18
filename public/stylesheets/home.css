@@ -150,6 +150,26 @@ i{
     padding:48px 0px;
 }
 
+.sorts{
+    display: flex;
+    width:400px;
+    justify-content: start;
+}
+.sort{
+    margin-right:8px;
+    background:#161616;
+    color:#575757;
+    border-radius: 8px;
+    font-size: 14px;
+    padding:8px;
+    cursor: pointer;
+}
+
+.sortactive{
+    background: #ffffff;
+    color:black
+}
+
 @media(max-width:1440px){
     .outer{
         width:80%;
