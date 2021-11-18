@@ -57,7 +57,7 @@
         </div>
 
         <div class="graph">
-            <canvas  id="myChart"></canvas>
+            <canvas height="200" id="myChart"></canvas>
         </div>
         <div class="dma">
             <div>
@@ -93,10 +93,6 @@ if(parseFloat(col) > 0){
 } else{
     graphColor = '#ff2323';
 }
-
-var gradient = ctx.createLinearGradient(0, 0, 0, 400)
-    gradient.addColorStop(0, graphColor)
-    gradient.addColorStop(1, '#000000')
 const myChart = new Chart(ctx, {
     type: 'line',
     options: {
@@ -115,9 +111,9 @@ const myChart = new Chart(ctx, {
             label: 'Value (in $)',
             data: yf,
             borderColor: graphColor,
-            fill: true,
-            backgroundColor: gradient,
-            tension: 0.1
+            fill: false,
+            tension: 0.1,
+            borderWidth:2
         }],
         
     }
