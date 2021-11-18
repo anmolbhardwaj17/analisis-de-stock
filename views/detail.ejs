@@ -57,27 +57,26 @@
         </div>
 
         <div class="graph">
-            <canvas height="300" id="myChart"></canvas>
+            <canvas  id="myChart"></canvas>
         </div>
         <div class="dma">
             <div>
                 <p class="bold">DMA50</p>
-                <p>$<%= dma50 %></p>
+                <p>$<%= dmaInfo.dma50 %></p>
             </div>
             <div>
                 <p class="bold">DMA100</p>
-                <p>$<%= dma100 %></p>
+                <p>$<%= dmaInfo.dma100 %></p>
             </div>
             <div>
                 <p class="bold">DMA200</p>
-                <p>$<%= dma200 %></p>
+                <p>$<%= dmaInfo.dma200 %></p>
             </div>
             
         </div>
         <div class="what-is-dma">
-            <span>What is dma?</span><br>
+            <span>What is DMA?</span><br>
             <span>A displaced moving average (DMA) is a moving average (MA) that has been adjusted forward or back in time in an attempt to better forecast trends or better fit the price movements of an asset.</span>
-        </div>
     </div>
 </body>
 
@@ -94,6 +93,10 @@ if(parseFloat(col) > 0){
 } else{
     graphColor = '#ff2323';
 }
+
+var gradient = ctx.createLinearGradient(0, 0, 0, 400)
+    gradient.addColorStop(0, graphColor)
+    gradient.addColorStop(1, '#000000')
 const myChart = new Chart(ctx, {
     type: 'line',
     options: {
@@ -101,6 +104,9 @@ const myChart = new Chart(ctx, {
                     point:{
                         radius: 0
                     }
+                },
+                animation: {
+                        easing: "linear"
                 }
             },
     data: {
@@ -108,13 +114,15 @@ const myChart = new Chart(ctx, {
         datasets: [{
             label: 'Value (in $)',
             data: yf,
-            fill: false,
             borderColor: graphColor,
+            fill: true,
+            backgroundColor: gradient,
             tension: 0.1
         }],
         
     }
 });
+
 </script>
 <script type="module">
     // Import the functions you need from the SDKs you need

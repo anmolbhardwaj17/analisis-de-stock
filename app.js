@@ -25,9 +25,7 @@ app.get('/', (req, res) => {
     // handle success
     console.log(response);
     const data = response.data["data"];
-    const timeStamp = response.data["timestamp"];
-    const relativeTime = timeDifference(Date.now(), timeStamp)
-    res.render("home", {data, relativeTime})
+    res.render("home", {data})
   })
   .catch(function (error) {
     // handle error
@@ -55,48 +53,17 @@ app.get('/:id', (req, res) => {
 
         const graphInfo = responseOne.data["data"];
         const coinInfo = responseTwo.data["data"];
-        console.log(coinInfo);
-        const xAxis = [];
-        const yAxis = [];
-        let dma50 = 0;
-        let dma100 = 0;
-        let dma200 = 0;
-        for(let i=0;i<graphInfo.length;i++){
-            let str = graphInfo[i]["date"]
-            let ans1 = str.substring(5,7);
-            let ans2 = str.substring(2,4);
-            let x = [ans1, ans2].join('-')
-            xAxis.push(x)
-            let y = parseFloat(graphInfo[i]["priceUsd"]).toFixed(2)
-            yAxis.push(y);
-             
-        }
-            const dma50Arr = yAxis.slice(Math.max(yAxis.length - 50, 0));
-            console.log("-----------------------------------",dma50Arr)
-            var sum50 = dma50Arr.reduce(function(a,b){
-              return parseFloat(a)+parseFloat(b);
-            }, 0);
-            dma50 = (sum50/50).toFixed(2); 
+        
+        const graphData = makeGraph(graphInfo);
+           
+        const dmaInfo = dma(graphData.yAxis);
 
-            const dma100Arr = yAxis.slice(Math.max(yAxis.length - 100, 0))
-            var sum100 = dma100Arr.reduce(function(a,b){
-              return parseFloat(a)+parseFloat(b);
-            }, 0);
-            dma100 = (sum100/100).toFixed(2); 
-
-            const dma200Arr = yAxis.slice(Math.max(yAxis.length - 200, 0))
-            var sum200 = dma200Arr.reduce(function(a,b){
-              return parseFloat(a)+parseFloat(b);
-            }, 0);
-            dma200 = (sum200/200).toFixed(2);
-
-
-            res.render("detail", {coinInfo, graphInfo, xAxis, yAxis, dma50, dma100, dma200});
+            res.render("detail", {coinInfo, graphInfo, xAxis:graphData.xAxis , yAxis:graphData.yAxis, dmaInfo});
 
         // use/access the results 
       })).catch(errors => {
         // react on errors.
-        console.log(errors);
+          console.log(errors);
       })
 
   
@@ -144,4 +111,42 @@ function timeDifference(current, previous) {
     else {
         return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
     }
+}
+
+function dma(yAxis){
+  const dma50Arr = yAxis.slice(Math.max(yAxis.length - 50, 0));
+            var sum50 = dma50Arr.reduce(function(a,b){
+              return parseFloat(a)+parseFloat(b);
+            }, 0);
+            dma50 = (sum50/50).toFixed(2); 
+
+            const dma100Arr = yAxis.slice(Math.max(yAxis.length - 100, 0))
+            var sum100 = dma100Arr.reduce(function(a,b){
+              return parseFloat(a)+parseFloat(b);
+            }, 0);
+            dma100 = (sum100/100).toFixed(2); 
+
+            const dma200Arr = yAxis.slice(Math.max(yAxis.length - 200, 0))
+            var sum200 = dma200Arr.reduce(function(a,b){
+              return parseFloat(a)+parseFloat(b);
+            }, 0);
+            dma200 = (sum200/200).toFixed(2);
+            return {dma50,dma100,dma200}
+}
+
+function makeGraph(graphInfo){
+        const xAxis = [];
+        const yAxis = [];
+
+        for(let i=0;i<graphInfo.length;i++){
+            let str = graphInfo[i]["date"]
+            let ans1 = str.substring(5,7);
+            let ans2 = str.substring(2,4);
+            let x = [ans1, ans2].join('-')
+            xAxis.push(x)
+            let y = parseFloat(graphInfo[i]["priceUsd"]).toFixed(2)
+            yAxis.push(y);
+             
+        }
+        return {xAxis, yAxis}
 }

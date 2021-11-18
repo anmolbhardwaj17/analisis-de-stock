@@ -127,7 +127,7 @@ i{
 }
 
 #myChart{
-    width:100%;
+
     margin:0px;
     padding:0px;
 }
@@ -194,5 +194,8 @@ i{
     .searchBar{
         width:100%;
 
+    }
+    #myChart{
+        height:200px;
     }
 }
